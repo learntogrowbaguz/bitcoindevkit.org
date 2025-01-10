@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["FileError","IterError"],"struct":["AggregateChangesetsError","EntryIter","Store"]};
