@@ -1,11 +1,12 @@
 const { resolve } = require('path')
-const themeConfig = require('squarecrypto-vuepress-devkit-theme/config')
+const themeConfig = require('@spiralbtc/vuepress-devkit-theme/config')
 
 const title = 'Bitcoin Dev Kit Documentation'
 const baseUrl = 'https://bitcoindevkit.org'
 const githubUrl = 'https://github.com/bitcoindevkit'
 const discordUrl = 'https://discord.gg/dstn4dQ'
 const twitterUrl = 'https://twitter.com/intent/follow?screen_name=bitcoindevkit'
+const nostrUrl = 'nostr:npub13dk3dke4zm9vdkucm7f6vv7vhqgkevgg3gju9kr2wzumz7nrykdq0dgnvc'
 const themeColor = '#ffffff'
 
 const docsSidebar = [
@@ -18,6 +19,7 @@ const docsSidebar = [
         title: "BDK-CLI",
         collapsable: true,
         children: [
+          '/bdk-cli/introduction',
           '/bdk-cli/installation',
           '/bdk-cli/concept',
           '/bdk-cli/interface',
@@ -27,25 +29,50 @@ const docsSidebar = [
         ]
       },
       '/descriptors/',
+      '/examples/',
     ]
   },
   {
     title: 'API Reference',
     collapsable: false,
     children: [
-      ['https://docs.rs/bdk/', 'Stable Docs'],
-      ['https://bitcoindevkit.org/docs-rs/bdk/nightly/latest/bdk/', 'Nightly Docs']
+      ['https://docs.rs/bdk_wallet/', 'Rust Stable Docs'],
+      ['https://bitcoindevkit.org/docs-rs/bdk/nightly/latest/bdk_wallet/', 'Rust Nightly Docs'],
+      ['https://bitcoindevkit.org/android/', 'Android Docs'],
+      ['https://bitcoindevkit.org/jvm/', 'Kotlin/JVM Docs'],
+      ['https://bitcoindevkit.org/java/', 'Java Docs'],
     ],
   }
 ]
 
-const tutorialSidebar = [
+const builtWithBdkSidebar = [
   {
-    title: 'Tutorials',
+    title: 'Built With BDK',
     collapsable: false,
     children: [
-      '/tutorials/hello-world',
-    ],
+      ["/adoption/all.md", "All"],
+      ["/adoption/mobile.md", "Mobile"],
+      ["/adoption/desktop.md", "Desktop"],
+      ["/adoption/hardware.md", "Hardware"],
+      ["/adoption/web.md", "Web"],
+      ["/adoption/custodial.md", "Custodial"],
+      ["/adoption/exchange.md", "Exchange"],
+      ["/adoption/infrastructure.md", "Infrastructure"],
+    ]
+  }
+]
+
+const foundationSidebar = [
+  {
+    title: 'Foundation',
+    collapsable: false,
+    children: [
+      ['/foundation/about.md', 'About Us'],
+      ['/foundation/supporters.md', 'Supporters'],
+      ['/foundation/grantees.md', 'Grantees'],
+      ['/foundation/grants.md', 'Grants'],
+      ['/foundation/members.md', 'Members'],
+    ]
   }
 ]
 
@@ -64,7 +91,7 @@ const blogSidebar = [
 module.exports = {
   title,
   description: 'The Bitcoin Dev Kit (BDK) project (originally called Magical Bitcoin 🧙) aims to build a collection of tools and libraries that are designed to be a solid foundation for cross platform Bitcoin wallets, along with a fully working reference implementation wallet called Magical Bitcoin.',
-  theme: resolve(__dirname, '../../node_modules/squarecrypto-vuepress-devkit-theme'),
+  theme: resolve(__dirname, '../../node_modules/@spiralbtc/vuepress-devkit-theme'),
   ...themeConfig({
     baseUrl,
     title,
@@ -85,27 +112,23 @@ module.exports = {
         link: '/getting-started/'
       },
       {
-        text: 'Tutorials',
-        link: '/tutorials/hello-world'
+        text: 'Adoption',
+        link: '/adoption/all.md'
+      },
+      {
+        text: 'Foundation',
+        link: '/foundation/'
       },
       {
         text: 'Blog',
         link: '/blog/'
       },
-      {
-        text: 'Discord',
-        link: discordUrl
-      },
-      {
-        text: 'GitHub',
-        link: githubUrl,
-        rel: 'noopener noreferrer'
-      }
     ],
     sidebar: {
+      '/adoption/': builtWithBdkSidebar,
       '/_blog/': blogSidebar,
       '/blog/': blogSidebar,
-      '/tutorials/': tutorialSidebar,
+      '/foundation/': foundationSidebar,
       '/': docsSidebar,
     },
     footer: {
@@ -136,6 +159,11 @@ module.exports = {
               rel: 'noopener noreferrer'
             },
             {
+              text: 'Nostr',
+              link: nostrUrl,
+              rel: 'noopener noreferrer'
+            },
+            {
               text: 'Twitter',
               link: twitterUrl,
               rel: 'noopener noreferrer'
@@ -156,7 +184,11 @@ module.exports = {
             },
             {
               text: 'Supporters',
-              link: '/supporters/'
+              link: '/foundation/supporters/'
+            },
+            {
+              text: 'BDK Foundation',
+              link: '/foundation/'
             }
           ]
         }

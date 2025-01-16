@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["SignerContext","SignerError","SignerId","TapLeavesOptions"],"struct":["SignOptions","SignerOrdering","SignerWrapper","SignersContainer"],"trait":["InputSigner","SignerCommon","TransactionSigner"]};

@@ -1,13 +1,14 @@
 ---
-title: "Spending Policy Demo"
+title: "Spending Policy Decoded"
 description: "Demonstrate how to use a descriptor wallet with different spending policies"
 authors:
     - Steve Myers
     - thunderbiscuit
 date: "2021-02-23"
 tags: ["guide", "descriptor"]
-permalink: "/blog/2021/02/spending-policy-demo/"
 ---
+
+## Introduction
 
 In this post we will use the [bdk-cli](https://github.com/bitcoindevkit/bdk-cli) tool to demonstrate how to use the [bdk](https://github.com/bitcoindevkit/bdk) library to:
 
@@ -115,11 +116,11 @@ This descriptor requires spending transaction inputs must be signed by all three
 Each participant's descriptor only uses their own XPRV key plus the XPUB keys of the other participants.
 
 ```bash
-export ALICE_DESCRIPTOR="wsh(thresh(3,pk($ALICE_XPRV/84'/1'/0'/0/*),s:pk($BOB_XPUB),s:pk($CAROL_XPUB),sdv:older(2)))"
+export ALICE_DESCRIPTOR="wsh(thresh(3,pk($ALICE_XPRV/84'/1'/0'/0/*),s:pk($BOB_XPUB),s:pk($CAROL_XPUB),snl:older(2)))"
 
-export BOB_DESCRIPTOR="wsh(thresh(3,pk($ALICE_XPUB),s:pk($BOB_XPRV/84'/1'/0'/0/*),s:pk($CAROL_XPUB),sdv:older(2)))"
+export BOB_DESCRIPTOR="wsh(thresh(3,pk($ALICE_XPUB),s:pk($BOB_XPRV/84'/1'/0'/0/*),s:pk($CAROL_XPUB),snl:older(2)))"
 
-export CAROL_DESCRIPTOR="wsh(thresh(3,pk($ALICE_XPUB),s:pk($BOB_XPUB),s:pk($CAROL_XPRV/84'/1'/0'/0/*),sdv:older(2)))"
+export CAROL_DESCRIPTOR="wsh(thresh(3,pk($ALICE_XPUB),s:pk($BOB_XPUB),s:pk($CAROL_XPRV/84'/1'/0'/0/*),snl:older(2)))"
 ```
 
 ## Policy A. Three signatures
@@ -323,7 +324,7 @@ bdk-cli wallet -w alice -d $ALICE_DESCRIPTOR get_balance
 }
 ```
 
-### DONE!
+#### DONE!
 
 ## Policy B. Two signatures after a relative time lock
 
@@ -436,6 +437,6 @@ bdk-cli wallet -w alice -d $ALICE_DESCRIPTOR get_balance
 }
 ```
 
-### Done again!
+#### Done again!
 
 In this demo we showed how to receive and spend bitcoin using two different descriptor wallet policies using the `bdk` library and `bdk-cli` wallet tool.

@@ -1,13 +1,14 @@
 ---
-title: "Descriptor-based paper wallets"
+title: "Making Descriptor-based paper wallets"
 description: "Demonstrate how to create descriptor-based paper wallet and how to spend them with bdk"
 authors:
     - Riccardo Casatta
     - Steve Myers
 date: "2021-03-30"
 tags: ["guide", "descriptor", "paper wallets"]
-permalink: "/blog/2021/03/descriptor-based-paper-wallets/"
 ---
+
+## Introduction
 
 In this post, we will use the [Rusty Paper Wallet] tool to create a multi-owned descriptor-based paper wallet. We will use [bdk] via the [bdk-cli] tool to test our descriptor and to be able to sweep the funds from our paper wallet to a new address.
 
